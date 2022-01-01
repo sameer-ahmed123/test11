@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%block content%}
+<div class="container mt-5 col-7 border border-dark">
+    <div class="row  align-items-center">
+        <div class="col">
+              <table class="table">
+<tr>
+     <thead>
+     <th>
+         Name
+     </th>
+    </thead>
+</tr>
+{% for Name in Name%}
+    <tr>
+        <td>{{Name.mName}}</td>
+         <td>
+            <a href="/edit/{{ Name.id }}"><span>Edit</span></a>
+            <a href="/del/{{ Name.id }}">Delete</a>
+        </td>
+    </tr>
+{%endfor%}
+</table>
+        </div>
+    </div>
+</div>
+{%endblock%}
+</body>
+</html>

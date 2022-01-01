@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%block content%}
+
+<div style="height:800px" class="d-flex justify-content-center align-items-center  ">
+    <form class=" form-group col-2 d-flex flex-column" method="post">
+        {%csrf_token%}
+        <h3>Sign-Up</h3><br>
+        <lable>Real Name</lable>
+        <input class="form-control" type="text" name="realname" id="Realname" value="{{ signup.Realname }}">
+        <lable>Username</lable>
+         <input class="form-control" type="text" name="username" id="Usename" value="{{ signup.Username }}">
+        <lable>Email</lable>
+        <input class="form-control" type="email" id="sEmail" name="semail" value="{{ signup.sEmail }}">
+        <label>Password</label>
+         <input class="form-control" type="password" id="sPassword" name="spassword" value="{{ signup.sPassword }}">
+       <br>
+        <input class="btn btn-success" type="submit" value="submit">
+    </form>
+    </div>
+{%endblock%}
+</body>
+</html>

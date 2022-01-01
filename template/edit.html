@@ -1,0 +1,18 @@
+{%extends "base.html"%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%block content%}
+<form method="post" action="/update/{{Name.id}}">
+    {%csrf_token%}
+    <label>MY name is</label>
+    <input name="mName" id="id_mName" type="text" value="{{ Name.mName}}"/>
+    <input type="button" value="update">
+</form>
+{%endblock%}
+</body>
+</html>

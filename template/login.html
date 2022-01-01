@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%block content%}
+
+    <div style="height:800px" class="row d-flex justify-content-center align-items-center">
+        <form class="form-group col-2 d-flex flex-column" method="post">
+            {%csrf_token%}
+            <h3>Login</h3>
+            <label>Username:</label>
+            {{login.Username}}
+            <label>Password</label>
+            {{login.Password}}<br>
+            <input class="btn btn-success" type="submit" value="submit">
+        </form>
+    </div>
+{%endblock%}
+</body>
+</html>
