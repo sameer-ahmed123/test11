@@ -1,17 +1,10 @@
 from django import forms
-from testing.models import name,credentials,signup,login
+from testing.models import name,credentials,signup
 
 class Nameform(forms.ModelForm):
     class Meta:
         model = name
         fields = '__all__'
-
-class loginForm(forms.ModelForm):
-    class Meta:
-        model=login
-        fields=('Username','Password')
-        widgets={'Username':forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}),
-                 'Password':forms.TextInput(attrs={'class':'form-control','placeholder':'Password'})}
 
 class CredentialFOrm(forms.ModelForm):
     class Meta:

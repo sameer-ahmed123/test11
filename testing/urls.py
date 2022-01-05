@@ -9,5 +9,6 @@ path('del/<int:id>',views.destroy),
 path('update/<int:id>',views.update),
 path('creds',views.creds),
 path('signup',views.signup1),
-path('login',views.login),
+path('login',views.login,name="login"),
+path('logout',views.logout,name='logout'),
 ]

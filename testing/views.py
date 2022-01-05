@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
-from testing.forms import Nameform,CredentialFOrm,loginForm,Signupform
-from testing.models import name,signup
+from testing.forms import Nameform,CredentialFOrm
+from testing.models import name,signup,product
+from django.contrib.auth.models import User,auth
+from django.contrib import messages
 # Create your views here.
 def test(request):
     if request.method == "POST":
@@ -17,16 +19,18 @@ def test(request):
 
 def login(request):
     if request.method == "POST":
-        form =loginForm(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('/login')
-            except:
-                pass
+        username =request.POST['lgusername']
+        password =request.POST['lgpassword']
+        user =auth.authenticate(username=username,password=password)
+
+        if user is not None:
+            auth.login(request,user)
+            return redirect("/sh")
+        else:
+            messages.info(request,"invalid username or password")
+            return redirect("/login")
     else:
-        form =loginForm()
-        return render(request,"login.html",{'login':form})
+        return render(request,"login.html")
 
 
 def creds(request):
@@ -43,7 +47,7 @@ def creds(request):
         return render(request,"credentials.html",{'credentials':form})
 
 def show(request):
-    Name= name.objects.all()
+    Name= product.objects.all()
     return render(request,"show.html",{"Name":Name})
 def edit(request,id):
     Name = name.objects.get(id=id)
@@ -62,5 +66,25 @@ def destroy(request,id):
     return redirect("/sh")
 
 def signup1(request):
-        form1 = signup.objects.all()
-        return render(request,'Signup.html',{'signup':form1})
+        if request.method =="POST":
+            Realname= request.POST['realname']
+            Username= request.POST['username']
+            sEmail= request.POST['semail']
+            sPassword= request.POST['spassword']
+
+            if User.objects.filter(username=Username).exists():
+                messages.info(request,"user exists")
+                return redirect("/signup")
+            else:
+                user= User.objects.create_user(username=Username,email=sEmail,password=sPassword,first_name=Realname)
+                user.save()
+                print("user made")
+                return redirect("/login")
+
+        else:
+            form1 = signup.objects.all()
+            return render(request,'Signup.html',{'signup':form1})
+
+def logout(request):
+    auth.logout(request)
+    return redirect("/login")

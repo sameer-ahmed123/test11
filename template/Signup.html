@@ -23,6 +23,11 @@
        <br>
         <input class="btn btn-success" type="submit" value="submit">
     </form>
+    <div class=" ">
+        {% for message in messages%}
+        <h3>{{message}}</h3>
+        {%endfor%}
+    </div>
     </div>
 {%endblock%}
 </body>

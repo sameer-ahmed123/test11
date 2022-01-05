@@ -10,13 +10,13 @@ class credentials(models.Model):
         db_table ="credentials"
     def __str__(self):
         return self.first_name +" "+self.last_name
-
-class login(models.Model):
-    Username=models.CharField(max_length=100)
-    Password=models.CharField(max_length=250)
-
-    class Meta:
-        db_table="login"
+#
+# class login(models.Model):
+#     Username=models.CharField(max_length=100)
+#     Password=models.CharField(max_length=250)
+#
+#     class Meta:
+#         db_table="login"
 
 class signup(models.Model):
     Realname = models.CharField(max_length=100)

@@ -9,16 +9,20 @@
 {%block content%}
 
     <div style="height:800px" class="row d-flex justify-content-center align-items-center">
-        <form class="form-group col-2 d-flex flex-column" method="post">
+        <form action="login" class="form-group col-2 d-flex flex-column" method="post">
             {%csrf_token%}
             <h3>Login</h3>
-            <label>Username:</label>
-            {{login.Username}}
-            <label>Password</label>
-            {{login.Password}}<br>
+            <input type="text" name="lgusername" placeholder="username">
+            <input type="password" name="lgpassword" placeholder="password">
             <input class="btn btn-success" type="submit" value="submit">
         </form>
+        <div>
+            {%for message in messages%}
+            <h4>{{message}}</h4>
+            {%endfor%}
+        </div>
     </div>
+
 {%endblock%}
 </body>
 </html>

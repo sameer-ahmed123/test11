@@ -7,6 +7,9 @@
 </head>
 <body>
 {%block content%}
+<div>
+    <a href="/logut"></a>
+</div>
 <div class="container mt-5 col-7 border border-dark">
     <div class="row  align-items-center">
         <div class="col">
@@ -20,7 +23,7 @@
 </tr>
 {% for Name in Name%}
     <tr>
-        <td>{{Name.mName}}</td>
+        <td><img style="height:100px" src="{{Name.Image.url}}">{{Name.mName}}</td>
          <td>
             <a href="/edit/{{ Name.id }}"><span>Edit</span></a>
             <a href="/del/{{ Name.id }}">Delete</a>
@@ -31,6 +34,22 @@
         </div>
     </div>
 </div>
+<!-- Put this code anywhere in the body of your page where you want the badge to show up. -->
+
+<div itemscope itemtype='http://schema.org/Person' class='fiverr-seller-widget' style='display: inline-block;'>
+     <a itemprop='url' href=https://www.fiverr.com/sameerahmed868 rel="nofollow" target="_blank" style='display: inline-block;'>
+        <div class='fiverr-seller-content' id='fiverr-seller-widget-content-58db14d2-a2c7-4536-b7bc-f4ee027036aa' itemprop='contentURL' style='display: none;'></div>
+        <div id='fiverr-widget-seller-data' style='display: none;'>
+            <div itemprop='name' >sameerahmed868</div>
+            <div itemscope itemtype='http://schema.org/Organization'><span itemprop='name'>Fiverr</span></div>
+            <div itemprop='jobtitle'>Seller</div>
+            <div itemprop='description'>HI There!! I just recently got out of collage with a lot free time at hand. I have interest in coding and starting to take classes for web development .I can design front-end  web pages ,I have skills in JavaScript Html ,CSS , Bootstrap and python and Django for back-end databases</div>
+        </div>
+    </a>
+</div>
+
+<script id='fiverr-seller-widget-script-58db14d2-a2c7-4536-b7bc-f4ee027036aa' src='https://widgets.fiverr.com/api/v1/seller/sameerahmed868?widget_id=58db14d2-a2c7-4536-b7bc-f4ee027036aa' data-config='{"category_name":"Programming \u0026 Tech"}' async='true' defer='true'></script>
+
 {%endblock%}
 </body>
 </html>
