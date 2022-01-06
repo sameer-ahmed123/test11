@@ -25,7 +25,7 @@ def login(request):
 
         if user is not None:
             auth.login(request,user)
-            return redirect("/sh")
+            return redirect("/")
         else:
             messages.info(request,"invalid username or password")
             return redirect("/login")
@@ -78,8 +78,9 @@ def signup1(request):
             else:
                 user= User.objects.create_user(username=Username,email=sEmail,password=sPassword,first_name=Realname)
                 user.save()
+                auth.login(request,user)
                 print("user made")
-                return redirect("/login")
+                return redirect("/")
 
         else:
             form1 = signup.objects.all()
@@ -87,4 +88,4 @@ def signup1(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect("/login")
+    return redirect("/")
