@@ -17,13 +17,17 @@
 <tr>
      <thead>
      <th>
-         Name
+        product image
+     </th>
+     <th>
+         Product name
      </th>
     </thead>
 </tr>
 {% for Name in Name%}
     <tr>
-        <td><img style="height:100px" src="{{Name.Image.url}}">{{Name.mName}}</td>
+        <td><img style="height:100px" src="{{Name.Image.url}}"></td>
+        <td>{{Name.product_name}}</td>
          <td>
             <a href="/edit/{{ Name.id }}"><span>Edit</span></a>
             <a href="/del/{{ Name.id }}">Delete</a>

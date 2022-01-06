@@ -7,12 +7,34 @@
 </head>
 <body>
 {%block content%}
-<form method="post" action="/update/{{Name.id}}">
-    {%csrf_token%}
-    <label>MY name is</label>
-    <input name="mName" id="id_mName" type="text" value="{{ Name.mName}}"/>
-    <input type="button" value="update">
-</form>
+<div class="container mt-5 col-7 border border-dark">
+    <div class="row  align-items-center">
+        <div class="col">
+              <table class="table">
+<tr>
+     <thead>
+     <th>
+        product image
+     </th>
+     <th>
+         Product name
+     </th>
+    </thead>
+</tr>
+
+    <tr>
+        <td><img style="height:100px" src="{{Name.Image.url}}"></td>
+        <td>{{Name.product_name}}</td>
+         <td>
+            <a href="/edit/{{ Name.id }}"><span>Edit</span></a>
+            <a href="/del/{{ Name.id }}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+        </div>
+    </div>
+</div>
 {%endblock%}
 </body>
 </html>

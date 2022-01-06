@@ -50,20 +50,20 @@ def show(request):
     Name= product.objects.all()
     return render(request,"show.html",{"Name":Name})
 def edit(request,id):
-    Name = name.objects.get(id=id)
+    Name = product.objects.get(id=id)
     return render(request,'edit.html',{"Name":Name})
 def update(request,id):
     Name = name.objects.get(id=id)
     form = Nameform(request.POST, instance=Name)
     if form.is_valid():
         form.save()
-        return redirect("/sh")
+        return redirect("/")
     return render(request, 'edit.html', {"Name" : Name})
 
 def destroy(request,id):
-    Name= name.objects.get(id=id)
+    Name= product.objects.get(id=id)
     Name.delete()
-    return redirect("/sh")
+    return redirect('/')
 
 def signup1(request):
         if request.method =="POST":
