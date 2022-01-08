@@ -7,10 +7,26 @@
 </head>
 <body>
 {%block content%}
-<!--  idher mene conditions ko hata dia ha or filters ko bhi khatam kar dia ha -->
+<div class="container-fluid mt-3">
+	<div class="row">
+        <!--  idher mene conditions ko hata dia ha or filters ko bhi khatam kar dia ha -->
 
 <!--coment read-->
+<!-- filters (Categorise) -->
+	<div class="col-lg-3 mt-5 mx-auto">
+			<div class="list-group">
+				<a href="/" class="list-group-item list-group-item-action">All Products</a>
+				{% for cat in category %}
+				<a href="/?category={{cat.id}}"
+					class="list-group-item list-group-item-action">{{cat.category}}</a>
+				{% endfor %}
+			</div>
+		</div>
 
+
+
+
+<!-- product here-->
 
 <div id="products" class="col-lg-9 mt-5 mx-auto">
     <div class="row mx-auto">
@@ -51,6 +67,10 @@
         {% endfor %}
     </div>
 </div>
+    </div>
+</div>
+
+
 {%endblock%}
 </body>
 </html>

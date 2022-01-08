@@ -1,15 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class credentials(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    Email = models.EmailField(max_length=200)
-    Password = models.CharField(max_length=200)
-    class Meta:
-        db_table ="credentials"
-    def __str__(self):
-        return self.first_name +" "+self.last_name
+
 #
 # class login(models.Model):
 #     Username=models.CharField(max_length=100)
@@ -37,8 +29,9 @@ class name(models.Model):
 
 
 #model 1
-class category(models.Model):
+class categories(models.Model):
     category =models.CharField(max_length=100)
+
     def __str__(self):
         return self.category
 
@@ -57,7 +50,7 @@ class User(models.Model):
 
 class product(models.Model):
     product_name =models.CharField(max_length=100)
-    product_category =models.ForeignKey(category ,on_delete=models.CASCADE ,default=None)
+    product_category =models.ForeignKey(categories ,on_delete=models.CASCADE ,default=None)
     price =models.IntegerField(default=0)
     discription =models.CharField(max_length=500 ,default="")
     Image = models.ImageField(upload_to="upload/products/")
