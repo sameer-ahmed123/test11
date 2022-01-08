@@ -11,4 +11,5 @@ path('creds',views.creds),
 path('signup',views.signup1),
 path('login',views.login,name="login"),
 path('logout',views.logout,name='logout'),
+path('store',views.store,name='store'),
 ]

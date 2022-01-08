@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{%block content%}
+<!--  idher mene conditions ko hata dia ha or filters ko bhi khatam kar dia ha -->
+
+<!--coment read-->
+
+
+<div id="products" class="col-lg-9 mt-5 mx-auto">
+    <div class="row mx-auto">
+        {% for p in product %}
+        <div class="card mx-auto mb-3" id="{{p.id}}" style="width:18rem;">
+            <img class="card-img-top" src="{{p.Image.url}}" alt="Card image top">
+            <div class="card-body">
+                <p class="card-title">{{p.product_name}}</p>
+                <p class="card-text">{{p.price}}</p>
+
+            </div>
+            <div class="card-footer p-0 no-gutters">
+
+                    <div class="row no-gutters">
+                        <form action="/#{{p.id}}" method="post" class="col-2">
+                            {%csrf_token%}
+                            <input type="text" name="product" value="{{p.id}}">
+                            <input type="text" name="remove" value="True">
+                            <input type="submit" value=" - " class="btn btn-block btn-light border-right">
+                        </form>
+                        <div class="text-center col"> in Cart</div>
+                        <form action="/#{{p.id}}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{p.id}}'>
+								<input type="submit" value=" + " class="btn btn-block btn-light border-left">
+                        </form>
+                    </div>
+
+						<form action="/#{{p.id}}" method="POST" class="btn-block">
+							{% csrf_token %}
+							<input hidden type="text" name='product' value='{{p.id}}'>
+							<input type="submit" class="form-control float-right btn btn-light "
+								value="Add To Cart">
+						</form>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}
+</body>
+</html>

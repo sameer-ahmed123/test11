@@ -89,3 +89,7 @@ def signup1(request):
 def logout(request):
     auth.logout(request)
     return redirect("/")
+
+def store(request):
+    p= product.objects.all()
+    return render(request,'store.html',{'product':p})
