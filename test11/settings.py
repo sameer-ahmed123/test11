@@ -85,7 +85,7 @@ DATABASES = {
         # port number.
         'PORT': '3306',
         # database name.
-        'NAME': 'test2',
+        'NAME': 'test11',
         # user name.
         'USER': 'root',
         # password

@@ -9,20 +9,20 @@
 {%block content%}
 
 <div style="height:800px" class="d-flex justify-content-center align-items-center  ">
-    <form class=" form-group col-2 d-flex flex-column" method="post">
+    <form name="myform" class=" form-group col-2 d-flex flex-column" method="post">
          <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Shopping_cart_with_food_clip_art_2.svg/307px-Shopping_cart_with_food_clip_art_2.svg.png" alt=""
                 class="" style="height: 200px;">
         {%csrf_token%}
         <h3>Sign-Up</h3><br>
         <lable>Real Name</lable>
-        <input class="form-control" type="text" name="realname" id="Realname" value="{{ signup.Realname }}">
+        <input required class="form-control" type="text" name="realname" id="Realname" value="{{ signup.Realname }}">
         <lable>Username</lable>
-         <input class="form-control" type="text" name="username" id="Usename" value="{{ signup.Username }}">
+         <input required class="form-control" type="text" name="username" id="Usename" value="{{ signup.Username }}">
         <lable>Email</lable>
-        <input class="form-control" type="email" id="sEmail" name="semail" value="{{ signup.sEmail }}">
+        <input required class="form-control" type="email" id="sEmail" name="semail" value="{{ signup.sEmail }}">
         <label>Password</label>
-         <input class="form-control" type="password" id="sPassword" name="spassword" value="{{ signup.sPassword }}">
+         <input required class="form-control" type="password" id="sPassword" name="spassword" value="{{ signup.sPassword }}">
        <br>
         <input class="btn btn-success" type="submit" value="submit">
     </form>

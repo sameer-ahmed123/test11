@@ -29,11 +29,15 @@ class name(models.Model):
 
 
 #model 1
-class categories(models.Model):
-    category =models.CharField(max_length=100)
+class category(models.Model):
+    name =models.CharField(max_length=100)
+
+    @staticmethod
+    def get_all_categories():
+        return category.objects.all()
 
     def __str__(self):
-        return self.category
+        return self.name
 
 
 
@@ -50,12 +54,27 @@ class User(models.Model):
 
 class product(models.Model):
     product_name =models.CharField(max_length=100)
-    product_category =models.ForeignKey(categories ,on_delete=models.CASCADE ,default=None)
+    product_category =models.ForeignKey(category ,on_delete=models.CASCADE ,default=1)
     price =models.IntegerField(default=0)
     discription =models.CharField(max_length=500 ,default="")
     Image = models.ImageField(upload_to="upload/products/")
     def __str__(self):
         return self.product_name
+
+    @staticmethod
+    def get_products_by_id(ids):
+        return product.objects.filter(id__in=ids)
+
+    @staticmethod
+    def get_all_products():
+        return product.objects.all()
+
+    @staticmethod
+    def get_all_products_by_categoryid(category_id):
+        if category_id:
+            return product.objects.filter(category=category_id)
+        else:
+            return product.get_all_products();
 
 
 

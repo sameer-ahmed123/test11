@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from testing.models import name,signup,product,categories
+from testing.models import name,signup,product,category
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 # Create your views here.
@@ -28,13 +28,13 @@ def show(request):
 def edit(request,id):
     Name = product.objects.get(id=id)
     return render(request,'edit.html',{"Name":Name})
-# def update(request,id):
-#     Name = name.objects.get(id=id)
-#     form = Nameform(request.POST, instance=Name)
-#     if form.is_valid():
-#         form.save()
-#         return redirect("/")
-#     return render(request, 'edit.html', {"Name" : Name})
+def update(request,id):
+    Name = name.objects.get(id=id)
+    form = Nameform(request.POST, instance=Name)
+    if form.is_valid():
+        form.save()
+        return redirect("/")
+    return render(request, 'edit.html', {"Name" : Name})
 
 def destroy(request,id):
     Name= product.objects.get(id=id)
@@ -70,6 +70,19 @@ def logout(request):
 
 
 def store(request):
-    p= product.objects.all()
-    cat = categories.objects.all()
-    return render(request,'store.html',{'product':p,'category':cat})
+    categories = category.get_all_categories()
+    categoryID = request.GET.get('category')
+    if categoryID:
+        products = product.get_all_products_by_categoryid(categoryID)
+    else:
+        products = product.get_all_products();
+
+    data = {}
+    data['products'] = products
+    data['categories'] = categories
+
+    print('you are : ', request.session.get('email'))
+    return render(request, 'store.html', data)
+    # p= product.objects.all()
+    # cat = categories.objects.all()
+    # return render(request,'store.html',{'product':p,'category':cat})

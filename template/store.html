@@ -15,10 +15,10 @@
 <!-- filters (Categorise) -->
 	<div class="col-lg-3 mt-5 mx-auto">
 			<div class="list-group">
-				<a href="/" class="list-group-item list-group-item-action">All Products</a>
-				{% for cat in category %}
-				<a href="/?category={{cat.id}}"
-					class="list-group-item list-group-item-action">{{cat.category}}</a>
+				<a href="/store" class="list-group-item list-group-item-action">All Products</a>
+				{% for category in categories %}
+				<a href="/store/?category={{category.id}}"
+					class="list-group-item list-group-item-action">{{category.name}}</a>
 				{% endfor %}
 			</div>
 		</div>
@@ -30,34 +30,34 @@
 
 <div id="products" class="col-lg-9 mt-5 mx-auto">
     <div class="row mx-auto">
-        {% for p in product %}
-        <div class="card mx-auto mb-3" id="{{p.id}}" style="width:18rem;">
-            <img class="card-img-top" src="{{p.Image.url}}" alt="Card image top">
+        {% for product in products %}
+        <div class="card mx-auto mb-3" id="{{product.id}}" style="width:18rem;">
+            <img class="card-img-top" src="{{product.Image.url}}" alt="Card image top">
             <div class="card-body">
-                <p class="card-title">{{p.product_name}}</p>
-                <p class="card-text">{{p.price}}</p>
+                <p class="card-title">{{product.product_name}}</p>
+                <p class="card-text">{{product.price}}</p>
 
             </div>
             <div class="card-footer p-0 no-gutters">
 
                     <div class="row no-gutters">
-                        <form action="/#{{p.id}}" method="post" class="col-2">
+                        <form action="/#{{product.id}}" method="post" class="col-2">
                             {%csrf_token%}
-                            <input type="text" name="product" value="{{p.id}}">
+                            <input type="text" name="product" value="{{product.id}}">
                             <input type="text" name="remove" value="True">
                             <input type="submit" value=" - " class="btn btn-block btn-light border-right">
                         </form>
                         <div class="text-center col"> in Cart</div>
-                        <form action="/#{{p.id}}" class="col-2 " method="post">
+                        <form action="/#{{product.id}}" class="col-2 " method="post">
 								{% csrf_token %}
-								<input hidden type="text" name='product' value='{{p.id}}'>
+								<input hidden type="text" name='product' value='{{product.id}}'>
 								<input type="submit" value=" + " class="btn btn-block btn-light border-left">
                         </form>
                     </div>
 
-						<form action="/#{{p.id}}" method="POST" class="btn-block">
+						<form action="/#{{product.id}}" method="POST" class="btn-block">
 							{% csrf_token %}
-							<input hidden type="text" name='product' value='{{p.id}}'>
+							<input hidden type="text" name='product' value='{{product.id}}'>
 							<input type="submit" class="form-control float-right btn btn-light "
 								value="Add To Cart">
 						</form>
