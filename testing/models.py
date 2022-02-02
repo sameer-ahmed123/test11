@@ -72,7 +72,7 @@ class product(models.Model):
     @staticmethod
     def get_all_products_by_categoryid(category_id):
         if category_id:
-            return product.objects.filter(category=category_id)
+            return product.objects.filter(product_category=category_id)
         else:
             return product.get_all_products();
 
@@ -84,3 +84,34 @@ class order(models.Model):
     status=models.BooleanField()
     def __str__(self):
         return self.coustomer
+
+
+class Customer(models.Model):
+    first_name=models.CharField(max_length=50)
+    last_name=models.CharField(max_length=150)
+    phone=models.CharField(max_length=50)
+    email=models.CharField(max_length=500)
+    password=models.CharField(max_length=500)
+
+    class Meta():
+        db_table ="Customers2"
+
+    def register(self):
+        self.save()
+
+
+    @staticmethod
+    def get_customer_by_email(email):
+        try:
+            return Customer.objects.get(email=email)
+        except:
+            return False
+
+
+
+    def isExists(self):
+        if Customer.objects.filter(email= self.email):
+            return True
+
+        return False
+

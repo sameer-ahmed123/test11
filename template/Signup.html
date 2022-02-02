@@ -1,37 +1,57 @@
-{%extends "base.html"%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{%block content%}
+{% extends 'base.html' %}
 
-<div style="height:800px" class="d-flex justify-content-center align-items-center  ">
-    <form name="myform" class=" form-group col-2 d-flex flex-column" method="post">
-         <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Shopping_cart_with_food_clip_art_2.svg/307px-Shopping_cart_with_food_clip_art_2.svg.png" alt=""
-                class="" style="height: 200px;">
-        {%csrf_token%}
-        <h3>Sign-Up</h3><br>
-        <lable>Real Name</lable>
-        <input required class="form-control" type="text" name="realname" id="Realname" value="{{ signup.Realname }}">
-        <lable>Username</lable>
-         <input required class="form-control" type="text" name="username" id="Usename" value="{{ signup.Username }}">
-        <lable>Email</lable>
-        <input required class="form-control" type="email" id="sEmail" name="semail" value="{{ signup.sEmail }}">
-        <label>Password</label>
-         <input required class="form-control" type="password" id="sPassword" name="spassword" value="{{ signup.sPassword }}">
-       <br>
-        <input class="btn btn-success" type="submit" value="submit">
-    </form>
-    <div class=" ">
-        {% for message in messages%}
-        <h3>{{message}}</h3>
-        {%endfor%}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="p-4 m-4">
+        <div class="col-lg-5 rounded mx-auto border pt-4">
+            <div class="text-center col">
+                <img  style="height: 150px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Shopping_cart_with_food_clip_art_2.svg/307px-Shopping_cart_with_food_clip_art_2.svg.png">
+                <div class="display-8">Create an account</div>
+                <hr>
+            </div>
+            <h3 hidden class="alert alert-light border rounded">Create an Account</h3>
+            <form action="/signup" method="post">
+                {% csrf_token %}
+                {% if error %}
+                <div class="alert alert-light" role="alert">
+                    {{error}}
+                </div>
+                {% endif%}
+
+                <div class="form-group">
+                    <lable>First name</lable>
+                    <input id="" type="text" name="firstname" class="form-control form-control-sm" value="{{values.first_name}}">
+                </div>
+                <div class="form-group">
+                    <label>Last name</label>
+                    <input id="" type="text" name="lastname" class="form-control form-control-sm" value="{{values.last_name}}">
+                </div>
+                <div class="form-group">
+                    <lable>Phone</lable>
+                    <input id="" name="phone" type="text" class="form-control form-control-sm" value="{{values.phone}}">
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input required type="email" name="email" id=""
+                    value="{{values.email}}"
+                    class=" form-control-sm form-control" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input id="" type="password" name="password" class="form-control form-control-sm" >
+                </div>
+                 <hr>
+         <div class="form-group">
+                  <input class="btn btn-sm btn-info" type="submit" value="Create An Account ">
+                </div>
+
+
+            </form>
+        </div>
+
     </div>
-    </div>
-{%endblock%}
-</body>
-</html>
+</div>
+<
+
+{% endblock %}

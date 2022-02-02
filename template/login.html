@@ -1,31 +1,57 @@
-{% extends "base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{%block content%}
+{% extends 'base.html' %}
 
-    <div style="height:800px" class="row d-flex justify-content-center align-items-center">
-        <form action="login" class="form-group col-2 d-flex flex-column" method="post">
-             <img
+
+{% block content %}
+
+<div class="container">
+    <div class="p-4 m-4">
+        <div class="col-lg-4 mt-4 border mb-4 mx-auto rounded pt-4">
+            <div class="text-center col">
+
+                <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Shopping_cart_with_food_clip_art_2.svg/307px-Shopping_cart_with_food_clip_art_2.svg.png" alt=""
-                class="" style="height: 200px;">
-            {%csrf_token%}
-            <h3>Login</h3>
-            <input type="text" name="lgusername" placeholder="username">
-            <input type="password" name="lgpassword" placeholder="password">
-            <input class="btn btn-success" type="submit" value="submit">
-        </form>
-        <div>
-            {%for message in messages%}
-            <h4>{{message}}</h4>
-            {%endfor%}
+                class="" style="height: 150px;">
+            <!-- <hr> -->
+            <div class="display-8">Create An Account</div>
+            <hr>
+            </div>
+            <h3 hidden class="alert alert-light border mt-4 mb-4 rounded">Login Here</h3>
+            <form action="/login" method="POST">
+
+                {% csrf_token %}
+
+                {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+                <!-- email -->
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input required type="email" name="email" id=""
+                    value="{{values.email}}"
+                    class=" form-control-sm form-control" placeholder="example@gmail.com">
+                </div>
+
+
+                <!-- password -->
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password"
+                    name="password"
+                    id=""
+                     class="form-control form-control-sm" placeholder="********">
+                </div>
+
+                <hr>
+                <div class="form-group">
+                    <input class="btn btn-sm btn-info col-lg-4" type="submit" value="Login">
+                </div>
+
+
+            </form>
         </div>
     </div>
+</div>
 
-{%endblock%}
-</body>
-</html>
+{% endblock %}
