@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from . views import Signup,Login,Cart
+from . views import Signup,Login,Cart,Index
 from .Middleware.auth import auth_middleware
 
 
@@ -13,7 +13,8 @@ path('del/<int:id>',views.destroy),
 path('signup',Signup.as_view()),
 path('login',Login.as_view(),name="login"),
 path('logout',views.logout,name='logout'),
-path('',views.store,name='store'),
+    path("",Index.as_view(),name="homepage"),
+path('store',views.store,name='store'),
 path('cart', auth_middleware(Cart.as_view()), name='cart')
 
 ]
