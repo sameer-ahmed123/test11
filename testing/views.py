@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponseRedirect
-from testing.models import name,signup,product,category,Customer
+from testing.models import name,signup,product,category,Customer,order
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from django.views import View
@@ -257,3 +257,35 @@ class Cart(View):
 
 
 # cart end
+from testing.models import product
+
+class checkout(View):
+    def post(self, request):
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+        customer = request.session.get('customer')
+        cart = request.session.get('cart')
+        Products = product.get_products_by_id(list(cart.keys()))
+        print(address, phone, customer, cart, Products)
+
+        for product1 in Products:
+            print(cart.get(str(product1.id)))
+            order1 = order(customer=Customer(id=customer),
+                          product=product1,
+                          price=product1.price,
+                          address=address,
+                          phone=phone,
+                          quantity=cart.get(str(product1.id)))
+            order1.save()
+        request.session['cart'] = {}
+
+        return redirect('cart')
+
+
+class Orders(View):
+    def get(self, request):
+        customer = request.session.get('customer')
+        orders = order.get_orders_by_customer(customer)
+        print(orders)
+        return render(request, 'orders.html', {'orders': orders})
+
