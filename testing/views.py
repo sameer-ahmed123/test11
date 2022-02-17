@@ -69,6 +69,7 @@ def destroy(request,id):
 
 class Index(View):
 
+
     def post(self , request):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
@@ -286,6 +287,22 @@ class Orders(View):
     def get(self, request):
         customer = request.session.get('customer')
         orders = order.get_orders_by_customer(customer)
+
+        try:
+            request.session['count'] += 1
+        except:
+            request.session['count'] = 0
         print(orders)
         return render(request, 'orders.html', {'orders': orders})
 
+
+
+
+
+# def counter(request):
+#     try:
+#         request.session['count'] += 1
+#     except:
+#         request.session['count'] = 0
+#
+#     return render(request,'orders.html')

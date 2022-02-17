@@ -19,4 +19,5 @@ path('cart', auth_middleware(Cart.as_view()), name='cart'),
     path('check-out',checkout.as_view(),name="checkout"),
     path('orders',auth_middleware(Orders.as_view()),name="orders"),
 
+
 ]

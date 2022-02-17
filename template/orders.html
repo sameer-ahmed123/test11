@@ -48,6 +48,13 @@
    </div>
 </div>
 
+<h1>number of visits
+    {% if request.session.count %}
+    {{request.session.count}}
+    {% else %}
+    0
+    {% endif %}
+</h1>
 
 
 
